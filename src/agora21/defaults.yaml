@@ -1,0 +1,22 @@
+# Canonical models/timeouts for local dev and CI (config.load_config).
+# Optional env overrides: AUTHOR_MODEL, REVIEWER_MODEL, *_TIMEOUT_S, MAX_REVIEW_ROUNDS.
+author:
+  model: "sonnet"
+  timeout_s: 3600
+reviewer:
+  model: "composer-2"
+  timeout_s: 3600
+loop:
+  max_rounds: 3
+schedule:
+  # Rolling window: spread queue backlog over business days until this day-of-month (WG21 usual drop).
+  mailing_deadline_day: 15
+  # Optional override when no data/mailings/*.json yet (otherwise null).
+  default_mailing_id: null
+  # Legacy field kept in state JSON; papers_for_today uses mailing_deadline_day instead.
+  max_business_days: 15
+# Parallel generation: ``generate-parallel`` / ``WG21_PARALLEL_WORKERS`` env override.
+parallel:
+  max_workers: 10
+# Mailing lists: agora21.fetcher (open-std #mailingYYYY-MM tables). Optional: WG21_MAILING_URL.
+mailing: {}

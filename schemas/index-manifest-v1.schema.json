@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wg21.org/schemas/index-manifest-v1.schema.json",
+  "title": "Published threads index manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "entries"],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1" },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["paper_id", "title", "mailing_id", "path", "published_at"],
+        "properties": {
+          "paper_id": { "type": "string" },
+          "title": { "type": "string" },
+          "mailing_id": { "type": "string" },
+          "path": { "type": "string" },
+          "published_at": {
+            "type": "string",
+            "description": "Paper date: prefer open-std Last-Modified (HEAD/GET on mailing URL); else mailing table Document Date (YYYY-MM-DD); may be empty if unknown"
+          },
+          "committee": {
+            "type": "string",
+            "enum": ["lwg", "lewg", "ewg", "cwg", "wg21_all"]
+          }
+        }
+      }
+    }
+  }
+}

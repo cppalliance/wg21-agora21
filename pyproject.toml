@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agora21"
+version = "0.1.0"
+description = "WG21 thread orchestration: fetch, loop, thread JSON (no HTML site generation)"
+license = {text = "BSL-1.0"}
+requires-python = ">=3.10"
+dependencies = [
+  "requests>=2.31",
+  "beautifulsoup4>=4.12",
+  "jsonschema>=4.22",
+  "markdown>=3.5",
+  "pygments>=2.17",
+  "pyyaml>=6.0",
+  "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6", "coverage[toml]>=7.0"]
+
+[project.scripts]
+agora21 = "agora21.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint.per-file-ignores]
+"src/agora21/loop.py" = ["E402"]

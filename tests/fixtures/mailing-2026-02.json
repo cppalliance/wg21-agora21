@@ -1,0 +1,9 @@
+{
+  "mailing_id": "2026-02",
+  "fetched_at": "2026-04-03T00:00:00+00:00",
+  "source_url": "https://example.invalid/fixture",
+  "papers": [
+    {"paper_id": "p0001r0", "url": "https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2026/p0001r0.html"},
+    {"paper_id": "p0002r0", "url": "https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2026/p0002r0.html"}
+  ]
+}

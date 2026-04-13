@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wg21.org/schemas/thread-v1.0.0.schema.json",
+  "title": "r/wg21 synthetic thread document",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "paper_id",
+    "mailing_id",
+    "heat_tier",
+    "submission",
+    "comments",
+    "promoted",
+    "producer_git_sha"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "producer_git_sha": {
+      "type": "string",
+      "description": "git rev-parse HEAD of the agora21 repository that produced this JSON"
+    },
+    "paper_id": {
+      "type": "string",
+      "pattern": "^([pP][0-9]+[rR][0-9]+|[nN][0-9]+)$"
+    },
+    "mailing_id": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}$"
+    },
+    "title": { "type": "string" },
+    "committee": {
+      "type": "string",
+      "description": "Routes thread into r/lwg|r/lewg|r/ewg|r/cwg indexes; wg21_all = r/wg21 aggregate only (omit to derive from mailing Subgroup)",
+      "enum": ["lwg", "lewg", "ewg", "cwg", "wg21_all"]
+    },
+    "heat_tier": {
+      "type": "string",
+      "enum": ["cold", "warm", "hot", "thermonuclear"]
+    },
+    "submission": { "$ref": "#/$defs/submission" },
+    "comments": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/comment" }
+    },
+    "promoted": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/promoted" }
+    }
+  },
+  "$defs": {
+    "submission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "body_markdown", "author", "score"],
+      "properties": {
+        "title": { "type": "string" },
+        "body_markdown": { "type": "string" },
+        "author": { "type": "string" },
+        "flair": { "type": ["string", "null"] },
+        "score": { "type": "integer" },
+        "created_ago": { "type": "string" },
+        "upvote_pct": { "type": ["integer", "string", "null"] }
+      }
+    },
+    "comment_flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mod", "op", "deleted", "collapsed", "controversial"],
+      "properties": {
+        "mod": { "type": "boolean" },
+        "op": { "type": "boolean" },
+        "deleted": { "type": "boolean" },
+        "collapsed": { "type": "boolean" },
+        "controversial": { "type": "boolean" }
+      }
+    },
+    "comment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "username",
+        "body_markdown",
+        "depth",
+        "score",
+        "flags",
+        "replies"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "flair": { "type": ["string", "null"] },
+        "body_markdown": { "type": "string" },
+        "depth": { "type": "integer", "minimum": 0 },
+        "score": { "type": "integer" },
+        "time_ago": { "type": "string" },
+        "flags": { "$ref": "#/$defs/comment_flags" },
+        "replies": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/comment" }
+        }
+      }
+    },
+    "promoted": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["headline", "body", "advertiser"],
+      "properties": {
+        "headline": { "type": "string" },
+        "body": { "type": "string" },
+        "advertiser": { "type": "string" },
+        "url": { "type": "string" }
+      }
+    }
+  }
+}

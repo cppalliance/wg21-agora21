@@ -1,0 +1,8 @@
+# Sync with [project] dependencies in pyproject.toml (for wg21-org vendor installs).
+requests>=2.31
+beautifulsoup4>=4.12
+jsonschema>=4.22
+markdown>=3.5
+pygments>=2.17
+pyyaml>=6.0
+python-dotenv>=1.0

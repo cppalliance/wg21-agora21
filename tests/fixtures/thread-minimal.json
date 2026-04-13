@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "producer_git_sha": "",
+  "paper_id": "p0001r0",
+  "mailing_id": "2026-02",
+  "title": "Test",
+  "committee": "wg21_all",
+  "heat_tier": "cold",
+  "submission": {
+    "title": "t",
+    "body_markdown": "b",
+    "author": "u/x",
+    "flair": null,
+    "score": 1
+  },
+  "comments": [],
+  "promoted": []
+}
